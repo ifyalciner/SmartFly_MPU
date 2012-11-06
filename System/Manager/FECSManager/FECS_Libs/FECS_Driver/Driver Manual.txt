@@ -1,0 +1,44 @@
+#How to write a new driver and integrate with System
+
+1.	Codes must be located under "FECS_System\FECS_Driver\FECS_[name]Driver" folder.
+	Exp. FECS_System\FECS_Driver\FECS_BarometerDriver	
+
+2. Driver class must have a header and source file.
+	Name of the header	:	FECS_[name]Driver.h	Exp. FECS_AccelerometerDriver.cpp
+	Name of the source	:	Same as header file with ".cpp" file extension
+
+3.	Header should include "Driver.h" header file located in "FECS_System\FECS_Driver"
+
+4.	Prevent your header file to be included twice. Using #ifndef,#define,#endif
+
+5.	Determine messages which are going to control your driver. Messages must intend 
+		to do primitive functions to driver device. Shouldn't contain higher functionalities.
+		
+		Exp. For a Accelerometer candidate messages like 
+			setSampleRate
+			or better
+			setConfiguration //which holds all configuration bits
+			
+			not
+			FilterResults
+			or
+			
+6.	Write required functions to do what messages are intended to do
+
+7.	Add required peripheral's object pointer into Driver Class.
+
+8.	After completing Driver class... In manager Class
+
+9.	Add driver class pointer to Related Manager class
+
+10.	In manager class constructor, initialize the Driver Class object dynamically
+
+11.	In manager class destructor, delete Driver Class Object
+
+12. In Manager Classes "messageInterpreter" function process messages by using functions written in step 6.
+
+13.	If there is timely repeating required message. Add them into timedMessageManager.
+
+14.	Add Timed functions corresponding "TimedSensorActions" 
+
+15.	increse "numberOfTimedSensorActions" by one

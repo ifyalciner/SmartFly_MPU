@@ -1,0 +1,22 @@
+## Error NO 1
+Cannot find -llibboost_regex library
+##solution
+No need to write prefix "lib". Just -lboost_regex
+##source
+http://stackoverflow.com/questions/2958137/cannot-not-find-library-files-in-eclipse-cdt
+
+## Error NO 2
+error while loading shared libraries: libboost_thread.so.1.51.0: cannot open shared object file: No such file or directory
+##solution
+this is because boost library directory is not added to system paths
+sudo ldconfig /usr/local/boost_1_51_0/stage/lib/
+##source
+http://stackoverflow.com/questions/6303884/program-compiles-fine-with-boost-libs-but-error-when-running-it
+
+## Error NO3
+libusb write error "submiturb failed error -1 errno=2 "
+##solution
+"I have gone through many forums, where ppl suggested that error is related to invalid endpoint"
+checked endpoint address corrected with the FECS's out endpoint address (which was 0x05 at the time)
+##source
+http://comments.gmane.org/gmane.comp.lib.libusb.devel.general/15813
